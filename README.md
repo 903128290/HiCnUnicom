@@ -1,3 +1,41 @@
+### 合成两人合照（不改变人物样貌）
+
+此项目提供脚本 `compose_group_photo.py`，自动抠图并将两张单人照合成为同一张合照。脚本保持人物原貌，不做面部修改，只进行背景去除、尺寸对齐与自然排版。
+
+#### 安装
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+首次运行 `rembg` 时会自动下载模型，需联网。
+
+#### 使用示例
+
+```bash
+python compose_group_photo.py \
+  --img1 /absolute/path/person_a.jpg \
+  --img2 /absolute/path/person_b.jpg \
+  --out /absolute/path/group_photo.png \
+  --left-first
+```
+
+可选：提供自己的背景图。
+
+```bash
+python compose_group_photo.py \
+  --img1 /abs/a.jpg \
+  --img2 /abs/b.jpg \
+  --background /abs/bg.jpg \
+  --out /abs/group.jpg
+```
+
+说明：
+- 默认生成浅色渐变背景，风格类似棚拍；加入 `--background` 可换成自定义背景。
+- `--left-first` 用于指定 `--img1` 在左侧（不加则默认 `--img2` 在左）。
+- 输出格式由 `--out` 的后缀决定（.png 或 .jpg）。
+
 <!--
  * @Author: your name
  * @Date: 2021-01-11 19:16:06
